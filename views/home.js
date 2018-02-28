@@ -1,14 +1,20 @@
-import React, {View, Text, StyleSheet, TouchableHighlight} from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import Button from 'react-native-button'
 import {Actions} from 'react-native-router-flux'
 
-export default class Home extends React.Component {
+export class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to Showhear Journal!
+          Welcome to Showhear Journal Home!
         </Text>
+        <Button
+            onPress={Actions.checkinInit}
+        >
+            Check In
+        </Button>
       </View>
     );
   }

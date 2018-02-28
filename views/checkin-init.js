@@ -1,4 +1,5 @@
-import React, {View, Text, StyleSheet, TouchableHighlight, ListView} from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View, ListView } from 'react-native';
 import Button from 'react-native-button'
 import {Actions} from 'react-native-router-flux'
 
@@ -7,7 +8,7 @@ var testLocations = ['Mohawk', 'Cheer up Charlies', 'Barracuda', 'Sidewinder', '
 
 var REQUEST_URL = 'http://10.0.3.2:5000/api/venues/search';
 
-export default class CheckinInit extends React.Component {
+export class CheckinInit extends React.Component {
 
   constructor(props) {
     super(props);
