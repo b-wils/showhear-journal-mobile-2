@@ -1,5 +1,17 @@
 {
   "expo": {
-    "sdkVersion": "25.0.0"
+    "name": "Your App Name",
+    "version": "0.0.0",
+    "slug": "showhear",
+    "ios": {
+      "bundleIdentifier": "com.showhear.showhear"
+    },
+    "android": {
+      "package": "com.showhear.showhear"
+    },
+    "sdkVersion": "25.0.0",
+    "facebookScheme": "fb159441374775648",
+    "facebookAppId": "159441374775648",
+    "facebookDisplayName": "Showhear Local",
   }
 }
