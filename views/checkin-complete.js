@@ -1,7 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Button from 'react-native-button'
-import {Actions} from 'react-native-router-flux'
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 var testArtists = ['Hikes', 'Boyfrndz', 'Chipper Jones'];
 
@@ -10,7 +8,7 @@ export class CheckinComplete extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          We've checked you into {this.props.venue}
+          We've checked you into {this.props.venue} without edits
         </Text>
         <Text style={styles.welcome}>
           The bands tonight are:
@@ -28,10 +26,8 @@ class ArtistButton extends React.Component {
   render() {
     return (
       <Button
-          onPress={Actions.checkinInit}
-      >
-          {this.props.name}
-      </Button>
+          title={this.props.name}
+      />
     );
   }
 }

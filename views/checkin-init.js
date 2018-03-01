@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, ListView } from 'react-native';
-import Button from 'react-native-button'
-import {Actions} from 'react-native-router-flux'
+import { StyleSheet, Text, View, ListView, Button } from 'react-native';
+
+import { withNavigation } from 'react-navigation';
 
 const MAX_LOCATIONS = 8;
 var testLocations = ['Mohawk', 'Cheer up Charlies', 'Barracuda', 'Sidewinder', 'Empire Control Room', "Stubb's"];
@@ -55,9 +55,9 @@ export class CheckinInit extends React.Component {
     );
   }
 
-  renderVenue(venue) {
+  renderVenue(venue, navigator) {
     return (
-      <LocationButton name={venue.displayName} key={venue.foursquareID}/>
+      <WrappedLocationButton name={venue.displayName} key={venue.foursquareID} navigator={navigator}/>
     );
   }
 
@@ -67,13 +67,14 @@ class LocationButton extends React.Component {
   render() {
     return (
       <Button
-          onPress={()=>Actions.checkinComplete({venue:this.props.name})}
-      >
-          {this.props.name}
-      </Button>
+          onPress={() => this.props.navigation.navigate('CheckinComplete')}
+          title={this.props.name}
+      />
     );
   }
 }
+
+var WrappedLocationButton = withNavigation(LocationButton);
 
 const styles = StyleSheet.create({
   container: {

@@ -1,7 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Button from 'react-native-button'
-import {Actions} from 'react-native-router-flux'
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export class Home extends React.Component {
   render() {
@@ -11,10 +9,9 @@ export class Home extends React.Component {
           Welcome to Showhear Journal Home!
         </Text>
         <Button
-            onPress={Actions.checkinInit}
-        >
-            Check In
-        </Button>
+            title='Check In'
+            onPress={() => this.props.navigation.navigate('CheckinInit')}
+        />
       </View>
     );
   }

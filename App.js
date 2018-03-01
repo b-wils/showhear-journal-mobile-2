@@ -1,32 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-import {Actions, Scene, Router} from 'react-native-router-flux';
+import { View, Text } from 'react-native';
+import { StackNavigator } from 'react-navigation'; // 1.0.0-beta.27
 
 // views
 import {Home, CheckinInit, CheckinComplete} from './views'
-// import {Login} from './views/login'
+// import {Home, CheckinInit} from './views'
+
+const RootStack = StackNavigator({
+  Home: {
+    screen: Home,
+  },
+  CheckinInit: {
+    screen: CheckinInit
+  },
+  CheckinComplete: {
+    screen: CheckinComplete
+  }
+});
 
 export default class App extends React.Component {
-
-    render() {
-        return <Router>
-            <Scene key="root">
-
-                <Scene key="home" initial={true} component={Home}/>
-                <Scene key="checkinInit"   component={CheckinInit}/>
-                <Scene key="checkinComplete"  component={CheckinComplete}/>
-            </Scene>
-        </Router>
-    }
-
+  render() {
+    return <RootStack />;
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
