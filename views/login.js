@@ -3,11 +3,10 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import {Facebook} from 'expo';
 
-import {loginUser} from '../redux/user'
+import {loginUser, getFacebookToken} from '../redux/user'
 
 class Login extends React.Component {
   render() {
-    console.log('render 3')
     return (
       <View>
         <Text>Login to facebook with Expo</Text>
@@ -15,18 +14,18 @@ class Login extends React.Component {
           title="Login"
           onPress={() => this.loginPress()}
         />
+        <Text> Your facebook token is {this.props.facebookToken} </Text>
       </View>
     );
   }
 
   loginPress() {
-    console.log('login press')
     this.props.dispatch(loginUser())
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  return {};
+  return {facebookToken: getFacebookToken(state)};
 }
 
 var wrappedComponent = connect(mapStateToProps)(Login);
