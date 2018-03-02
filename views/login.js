@@ -3,9 +3,14 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import {Facebook} from 'expo';
 
-import {loginUser, getFacebookToken} from '../redux/user'
+import {loginUser, getFacebookToken, loadInitialState} from '../redux/user'
 
 class Login extends React.Component {
+
+  componentDidMount() {
+    this.props.dispatch(loadInitialState())
+  }
+
   render() {
     return (
       <View>

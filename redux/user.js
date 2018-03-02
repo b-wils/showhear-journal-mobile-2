@@ -2,6 +2,10 @@ import Immutable, { Map } from 'immutable';
 import { createSelector } from 'reselect'
 import { Facebook } from 'expo';
 
+import {getItem, setItem} from '../utils/device-store'
+
+const STORE_TOKEN_PATH = 'facebook_token';
+
 // Actions
 const LOGIN = 'user/LOGIN'
 const LOGOUT = 'user/LOGOUT'
@@ -27,6 +31,16 @@ function logout() {
 }
 
 // thunks
+export function loadInitialState() {
+  return async (dispatch) => {
+    const token = await getItem(STORE_TOKEN_PATH)
+
+    if (token !== null) {
+      dispatch(loginComplete(token));
+    }
+  }
+}
+
 export function loginUser () {
   return async (dispatch) => {
 	  var { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('159441374775648', {
@@ -35,6 +49,8 @@ export function loginUser () {
 
 	  if (type === 'success') {
         dispatch(loginComplete(token))
+        await setItem(STORE_TOKEN_PATH, token);
+        const storetoken = await getItem(STORE_TOKEN_PATH)
 	  } 
   }
 }
@@ -45,3 +61,5 @@ export function logoutUser() {
 
 // Selectors
 export const getFacebookToken = (state) => state.user.get('facebookToken');
+
+loadInitialState();
