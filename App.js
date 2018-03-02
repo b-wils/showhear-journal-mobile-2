@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import {Provider} from 'react-redux'
 import { StackNavigator } from 'react-navigation'; // 1.0.0-beta.27
 
 // views
 import {Home, CheckinInit, CheckinComplete, Login} from './views'
-// import {Home, CheckinInit} from './views'
+
+import store from './redux/store'
 
 const INITIAL_ROUTE_NAME = 'Login'
 
@@ -30,6 +32,11 @@ const RootStack = StackNavigator(
 
 export default class App extends React.Component {
   render() {
-    return <RootStack />;
+    return (
+              <Provider store={store}>
+                <RootStack/>
+              </Provider>
+            )
+
   }
 }
